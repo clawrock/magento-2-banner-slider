@@ -92,6 +92,34 @@ class Data extends AbstractData
      */
     public function getBannerOptions($slider)
     {
+        $this->prepareSliderOptions($slider);
+
+        return self::jsonEncode($slider->getData('_options'));
+    }
+
+    /**
+     * @param \Mageplaza\BannerSlider\Model\Slider $slider
+     *
+     * @return bool
+     */
+    public function isLazyLoad($slider)
+    {
+        $this->prepareSliderOptions($slider);
+
+        return (bool) ($slider->getData('_options')['lazyLoad'] ?? false);
+    }
+
+    /**
+     * @param \Mageplaza\BannerSlider\Model\Slider $slider
+     *
+     * @return void
+     */
+    private function prepareSliderOptions($slider)
+    {
+        if ($slider->hasData('_options')) {
+            return;
+        }
+
         if ($slider && $slider->getDesign() === '1') { //not use Config
             $config = $slider->getData();
         } else {
@@ -104,7 +132,7 @@ class Data extends AbstractData
 
         $sliderOptions = array_merge($defaultOpt, $responsiveOpt, $effectOpt);
 
-        return self::jsonEncode($sliderOptions);
+        $slider->setData('_options', $sliderOptions);
     }
 
     /**
@@ -118,7 +146,7 @@ class Data extends AbstractData
         foreach ($configs as $key => $value) {
             if (in_array(
                 $key,
-                ['autoWidth', 'autoHeight', 'loop', 'nav', 'dots', 'lazyLoad', 'autoplay', 'autoplayTimeout']
+                ['autoWidth', 'autoHeight', 'loop', 'nav', 'dots', 'lazyLoad', 'autoplay', 'autoplayTimeout', 'rewind']
             )) {
                 $basicConfig[$key] = (int)$value;
             }

@@ -132,6 +132,12 @@ class Design extends Generic implements TabInterface
             'title'  => __('Infinity Loop'),
             'values' => $this->_yesno->toOptionArray()
         ]);
+        $rewind = $fieldset->addField('rewind', 'select', [
+            'name'   => 'rewind',
+            'label'  => __('Rewind'),
+            'title'  => __('Rewind'),
+            'values' => $this->_yesno->toOptionArray()
+        ]);
         $nav = $fieldset->addField('nav', 'select', [
             'name'   => 'nav',
             'label'  => __('Show Next/Prev Buttons'),
@@ -169,6 +175,7 @@ class Design extends Generic implements TabInterface
             ->addFieldMap($autoWidth->getHtmlId(), $autoWidth->getName())
             ->addFieldMap($autoHeight->getHtmlId(), $autoHeight->getName())
             ->addFieldMap($loop->getHtmlId(), $loop->getName())
+            ->addFieldMap($rewind->getHtmlId(), $rewind->getName())
             ->addFieldMap($nav->getHtmlId(), $nav->getName())
             ->addFieldMap($dots->getHtmlId(), $dots->getName())
             ->addFieldMap($lazyload->getHtmlId(), $lazyload->getName())
@@ -179,6 +186,7 @@ class Design extends Generic implements TabInterface
             ->addFieldDependence($autoWidth->getName(), $design->getName(), '1')
             ->addFieldDependence($autoHeight->getName(), $design->getName(), '1')
             ->addFieldDependence($loop->getName(), $design->getName(), '1')
+            ->addFieldDependence($rewind->getName(), $design->getName(), '1')
             ->addFieldDependence($nav->getName(), $design->getName(), '1')
             ->addFieldDependence($dots->getName(), $design->getName(), '1')
             ->addFieldDependence($lazyload->getName(), $design->getName(), '1')

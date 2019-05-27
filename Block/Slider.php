@@ -142,4 +142,12 @@ class Slider extends Template
     {
         return $this->helperData->getBannerOptions($this->getSlider());
     }
+
+    /**
+     * @return bool
+     */
+    public function isLazyLoad()
+    {
+        return $this->helperData->isLazyLoad($this->getSlider());
+    }
 }

@@ -25,7 +25,10 @@ $banners = $block->getBannerCollection();
 if (count($banners)) : ?>
     <?php
     $sliderId      = $block->getSliderId() . uniqid('-', false);
-    $sliderOptions = $block->getBannerOptions(); ?>
+    $sliderOptions = $block->getBannerOptions();
+    $imgExtraClass = $block->isLazyLoad() ? ' owl-lazy' : '';
+    $srcDataPrefix = $block->isLazyLoad() ? 'data-' : '';
+    ?>
     <div class="carousel-container">
         <div id="banner-slider-carousel">
             <?php $iterator = 1; ?>
@@ -53,10 +56,10 @@ if (count($banners)) : ?>
                                     <?php if (!empty($bnTitle)) : ?>
                                         <div class="banner-title"><?= $bnTitle ?></div>
                                     <?php endif; ?>
-                                    <img class="img-responsive" src="<?= $bnImg ?>">
+                                    <img class="img-responsive<?= $imgExtraClass ?>" <?= $srcDataPrefix ?>src="<?= $bnImg ?>">
                                 </a>
                             <?php else : ?>
-                                <img class="owl-image img-responsive" src="<?= $bnImg ?>"
+                                <img class="owl-image img-responsive<?= $imgExtraClass ?>" <?= $srcDataPrefix ?>src="<?= $bnImg ?>"
                                      title="<?= $bnTitle ?>">
                             <?php endif; ?>
                         </div>

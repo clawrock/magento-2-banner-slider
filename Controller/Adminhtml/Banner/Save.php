@@ -32,6 +32,7 @@ use Magento\Framework\Registry;
 use Mageplaza\BannerSlider\Controller\Adminhtml\Banner;
 use Mageplaza\BannerSlider\Helper\Image;
 use Mageplaza\BannerSlider\Model\BannerFactory;
+use Mageplaza\BannerSlider\Model\Config\Source\Type;
 use RuntimeException;
 
 /**
@@ -87,7 +88,10 @@ class Save extends Banner
             $data   = $this->getRequest()->getPost('banner');
             $banner = $this->initBanner();
 
-            $this->imageHelper->uploadImage($data, 'image', Image::TEMPLATE_MEDIA_TYPE_BANNER, $banner->getImage());
+            if (Type::IMAGE === $data['type']) {
+                $this->imageHelper->uploadImage($data, 'image', Image::TEMPLATE_MEDIA_TYPE_BANNER, $banner->getImage());
+            }
+
             $data['sliders_ids'] = (isset($data['sliders_ids']) && $data['sliders_ids'])
                 ? explode(',', $data['sliders_ids']) : [];
             if ($this->getRequest()->getPost('sliders', false)) {
