@@ -266,8 +266,8 @@ class Banner extends Generic implements TabInterface
             'required' => false,
             'config'   => $this->_wysiwygConfig->getConfig([
                 'hidden'         => true,
-                'add_variables'  => false,
-                'add_widgets'    => false,
+                'add_variables'  => true,
+                'add_widgets'    => true,
                 'add_directives' => true
             ])
         ]);

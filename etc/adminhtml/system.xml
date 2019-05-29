@@ -68,6 +68,12 @@
                     <validate>validate-digits</validate>
                     <comment>Select Yes to re-display the slider after it shows the last item</comment>
                 </field>
+                <field id="rewind" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Rewind</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <validate>validate-digits</validate>
+                    <comment>Select Yes to go backward when boundary was reached</comment>
+                </field>
                 <field id="nav" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Show Next/Prev Buttons</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
